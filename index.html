@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OMAR STORE | Sneakers</title>
+
+<style>
+:root{
+ --main:#111827;
+ --accent:#d99a36;
+ --text:#172033;
+ --bg:#f4f6fa;
+ --glow:#e9d5b5;
+ --card:#fff;
+ --muted:#758096;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;
+ font-family:Arial,Tahoma,sans-serif;
+ color:var(--text);
+ background:
+ radial-gradient(circle at 85% 15%,var(--glow),transparent 35%),
+ linear-gradient(135deg,var(--bg),#fff);
+ transition:background .7s ease;
+ min-height:100vh;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0}
+header{
+ position:sticky;
+ top:0;
+ z-index:20;
+ background:#101827;
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:15px 5%;
+ box-shadow:0 5px 20px #0002;
+ gap:15px;
+ flex-wrap:wrap;
+}
+.logo{font-size:25px;font-weight:900;letter-spacing:1px}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+nav button,.head-btn{
+ background:#263246;
+ color:white;
+ padding:10px 15px;
+ border-radius:10px;
+ transition:.25s;
+}
+nav button:hover,.head-btn:hover{
+ background:var(--accent);
+ color:#111;
+}
+.hero{
+ min-height:480px;
+ padding:45px 7%;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ align-items:center;
+ gap:25px;
+ background:
+ radial-gradient(circle at 75% 45%,var(--glow),transparent 48%),
+ linear-gradient(120deg,var(--hero-bg,#f4eee5),#fff);
+ transition:background .7s ease;
+}
+.hero-copy h1{
+ font-size:clamp(35px,5vw,65px);
+ margin:0 0 15px;
+}
+.hero-copy h1 span{color:var(--accent)}
+.hero-copy p{
+ font-size:18px;
+ line-height:1.8;
+ color:#4c5567;
+}
+.primary{
+ background:#111827;
+ color:white;
+ padding:13px 25px;
+ border-radius:12px;
+ font-weight:bold;
+ margin-top:10px;
+ transition:.25s;
+}
+.primary:hover{
+ background:var(--accent);
+ color:#111;
+ transform:translateY(-2px);
+}
+.hero-image{
+ height:350px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ perspective:1000px;
+}
+.hero-image img{
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ filter:drop-shadow(0 25px 20px #0003);
+ animation:float 4s ease-in-out infinite;
+ transition:transform .5s;
+}
+@keyframes float{
+ 0%,100%{transform:translateY(0) rotate(-3deg)}
+ 50%{transform:translateY(-13px) rotate(3deg)}
+}
+.dots{display:flex;gap:8px;margin-top:20px}
+.dot{
+ width:10px;
+ height:10px;
+ border-radius:50%;
+ background:#aaa;
+ padding:0;
+}
+.dot.active{
+ background:var(--accent);
+ width:28px;
+}
+.section{
+ padding:45px 5%;
+ background:transparent;
+}
+.section-title{
+ text-align:center;
+ margin-bottom:25px;
+}
+.section-title h2{font-size:32px;margin-bottom:8px}
+.section-title p{color:var(--muted)}
+.filters{
+ display:flex;
+ justify-content:center;
+ gap:10px;
+ flex-wrap:wrap;
+ margin:20px 0 30px;
+}
+.filter{
+ padding:10px 18px;
+ border-radius:30px;
+ background:#e5e9f0;
+ color:#222;
+}
+.filter.active,.filter:hover{
+ background:#111827;
+ color:white;
+}
+.products{
+ display:grid;
+ grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:22px;
+}
+.product{
+ background:var(--card);
+ border-radius:18px;
+ overflow:hidden;
+ box-shadow:0 8px 25px #17203312;
+ transition:.35s;
+ border:1px solid #e9edf3;
+ position:relative;
+}
+.product:hover{
+ transform:translateY(-9px) rotateX(2deg) rotateY(-2deg);
+ box-shadow:0 20px 35px #17203325;
+}
+.product-photo{
+ height:230px;
+ background:linear-gradient(145deg,#f5f5f5,#e8edf4);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:12px;
+ overflow:hidden;
+}
+.product-photo img{
+ width:100%;
+ height:100%;
+ object-fit:contain;
+ transition:.4s;
+}
+.product:hover .product-photo img{
+ transform:scale(1.08) rotate(-3deg);
+}
+.product-info{padding:17px}
+.product-info h3{margin:0 0 8px;font-size:18px}
+.product-info p{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.6;
+ min-height:40px;
+}
+.price{
+ font-size:21px;
+ font-weight:900;
+ color:#b87920;
+ margin:12px 0;
+}
+.product-actions{display:flex;gap:8px}
+.product-actions button{
+ flex:1;
+ padding:11px 5px;
+ border-radius:9px;
+ background:#111827;
+ color:white;
+ transition:.25s;
+}
+.product-actions button:hover{
+ background:var(--accent);
+ color:#111;
+}
+.tag{
+ position:absolute;
+ top:12px;
+ right:12px;
+ background:var(--accent);
+ color:#111;
+ padding:6px 10px;
+ border-radius:20px;
+ font-size:12px;
+ font-weight:bold;
+ z-index:2;
+}
+.features{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:18px;
+ margin-top:25px;
+}
+.feature{
+ background:white;
+ padding:25px;
+ border-radius:15px;
+ text-align:center;
+ box-shadow:0 8px 20px #0000000a;
+}
+.feature b{font-size:18px}
+footer{
+ background:#101827;
+ color:white;
+ padding:35px 6%;
+ text-align:center;
+}
+footer p{color:#cbd2df;line-height:1.8}
+.overlay{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:#0008;
+ z-index:40;
+}
+.overlay.show{display:block}
+.drawer{
+ position:fixed;
+ top:0;
+ left:-440px;
+ width:min(420px,92vw);
+ height:100%;
+ background:white;
+ z-index:50;
+ padding:22px;
+ overflow:auto;
+ transition:.3s;
+}
+.drawer.show{left:0}
+.drawer-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+}
+.close{
+ background:#eee;
+ padding:8px 12px;
+ border-radius:8px;
+}
+.cart-item{
+ display:flex;
+ gap:12px;
+ padding:13px 0;
+ border-bottom:1px solid #eee;
+ align-items:center;
+}
+.cart-item img{
+ width:75px;
+ height:70px;
+ object-fit:contain;
+ background:#f2f3f6;
+ border-radius:9px;
+}
+.cart-item-info{flex:1}
+.cart-item-info small{
+ display:block;
+ color:#777;
+ margin-top:5px;
+}
+.qty{
+ display:flex;
+ gap:8px;
+ align-items:center;
+ margin-top:8px;
+ flex-wrap:wrap;
+}
+.qty button{
+ background:#eee;
+ border-radius:5px;
+ padding:4px 9px;
+}
+.remove{
+ background:#fee;
+ color:#b22;
+ padding:7px;
+ border-radius:7px;
+}
+.total{
+ font-size:22px;
+ font-weight:bold;
+ margin:20px 0;
+}
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:60;
+ background:#0009;
+ align-items:center;
+ justify-content:center;
+ padding:15px;
+}
+.modal.show{display:flex}
+.modal-box{
+ width:min(500px,100%);
+ max-height:90vh;
+ overflow:auto;
+ background:white;
+ padding:25px;
+ border-radius:18px;
+}
+.modal-box h2{margin-top:0}
+.field{margin:12px 0}
+.field label{
+ display:block;
+ margin-bottom:6px;
+ font-weight:bold;
+}
+.field input,.field select,.field textarea{
+ width:100%;
+ padding:12px;
+ border:1px solid #d8dce4;
+ border-radius:9px;
+}
+.field textarea{min-height:75px}
+.admin-panel{
+ display:none;
+ padding:25px 5%;
+ background:#edf1f7;
+}
+.admin-panel.show{display:block}
+.admin-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:15px;
+}
+.admin-actions{
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap;
+ margin:15px 0;
+}
+.admin-actions button{
+ background:#111827;
+ color:white;
+ padding:10px 15px;
+ border-radius:8px;
+}
+.admin-list{display:grid;gap:10px}
+.admin-row{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ background:white;
+ padding:12px;
+ border-radius:10px;
+ flex-wrap:wrap;
+}
+.admin-row button{
+ padding:8px 12px;
+ border-radius:7px;
+ background:#eee;
+}
+.admin-row .delete{background:#fee;color:#a22}
+.empty{text-align:center;color:#777;padding:35px}
+.image-fallback{
+ display:flex;
+ width:100%;
+ height:100%;
+ align-items:center;
+ justify-content:center;
+ color:#777;
+ font-size:13px;
+ text-align:center;
+}
+@media(max-width:900px){
+ .products{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+ header{justify-content:center}
+ .hero{
+  grid-template-columns:1fr;
+  text-align:center;
+  padding:35px 6%;
+ }
+ .hero-image{
+  height:240px;
+  grid-row:1;
+ }
+ .dots{justify-content:center}
+ .products{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+ }
+ .product-photo{height:155px}
+ .product-info{padding:11px}
+ .product-info h3{font-size:15px}
+ .features{grid-template-columns:1fr}
+ .admin-grid{grid-template-columns:1fr}
+ .product-actions button{font-size:12px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">OMAR <span>STORE</span></div>
+ <nav>
+  <button onclick="goShop()">المتجر</button>
+  <button onclick="openCart()">السلة 🛒 <span id="cartCount">0</span></button>
+  <button onclick="loginAdmin()">لوحة التحكم</button>
+  <button onclick="toggleLanguage()" id="langBtn">EN</button>
+ </nav>
+</header>
+
+<section class="hero" id="hero">
+ <div class="hero-copy">
+  <h1>خطوتك تبدأ من <span>هنا</span></h1>
+  <p>اكتشف أحدث الكوتشيهات الرياضية والكاجوال. اختار ستايلك وخلي كل خطوة ليها شكل مختلف.</p>
+  <button class="primary" onclick="goShop()">اكتشف المجموعة</button>
+  <div class="dots" id="dots"></div>
+ </div>
+ <div class="hero-image">
+  <img id="heroImg" src="" alt="Sneaker">
+ </div>
+</section>
+
+<section class="section" id="shop">
+ <div class="section-title">
+  <h2>اكتشف مجموعتنا</h2>
+  <p>اختار الكوتشي المناسب لستايلك</p>
+ </div>
+
+ <div class="filters">
+  <button class="filter active" onclick="setFilter('all',this)">الكل</button>
+  <button class="filter" onclick="setFilter('Running',this)">Running</button>
+  <button class="filter" onclick="setFilter('Street',this)">Street</button>
+  <button class="filter" onclick="setFilter('Sport',this)">Sport</button>
+  <button class="filter" onclick="setFilter('Classic',this)">Classic</button>
+ </div>
+
+ <div class="products" id="products"></div>
+</section>
+
+<section class="section">
+ <div class="section-title">
+  <h2>ليه تختار OMAR STORE؟</h2>
+ </div>
+ <div class="features">
+  <div class="feature">
+   <div style="font-size:35px">👟</div>
+   <b>تشكيلة متنوعة</b>
+   <p>اختيارات مختلفة تناسب استخدامك اليومي.</p>
+  </div>
+  <div class="feature">
+   <div style="font-size:35px">✨</div>
+   <b>ستايل مميز</b>
+   <p>تصميمات رياضية وكاجوال متنوعة.</p>
+  </div>
+  <div class="feature">
+   <div style="font-size:35px">🛍️</div>
+   <b>تجربة سهلة</b>
+   <p>اختار المنتج والمقاس وأضفه للسلة.</p>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <div class="logo">OMAR <span>STORE</span></div>
+ <p>اختار ستايلك، وخلي خطوتك مختلفة.</p>
+ <small>© 2026 OMAR STORE</small>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<aside class="drawer" id="drawer">
+ <div class="drawer-head">
+  <h2>سلة المشتريات</h2>
+  <button class="close" onclick="closeCart()">✕</button>
+ </div>
+ <div id="cartItems"></div>
+ <div class="total" id="cartTotal">الإجمالي: 0 جنيه</div>
+ <button class="primary" style="width:100%" onclick="checkout()">تأكيد الطلب</button>
+</aside>
+
+<div class="modal" id="productModal">
+ <div class="modal-box">
+  <div class="drawer-head">
+   <h2 id="modalName">اختيار المنتج</h2>
+   <button class="close" onclick="closeProduct()">✕</button>
+  </div>
+  <div id="modalDetails"></div>
+  <div class="field">
+   <label>اختار المقاس</label>
+   <select id="shoeSize">
+    <option value="">اختار المقاس</option>
+    <option>38</option><option>39</option><option>40</option>
+    <option>41</option><option>42</option><option>43</option>
+    <option>44</option><option>45</option>
+   </select>
+  </div>
+  <button class="primary" style="width:100%" onclick="confirmAdd()">أضف إلى السلة</button>
+ </div>
+</div>
+
+<div class="modal" id="loginModal">
+ <div class="modal-box">
+  <div class="drawer-head">
+   <h2>دخول لوحة التحكم</h2>
+   <button class="close" onclick="hideModal('loginModal')">✕</button>
+  </div>
+  <div class="field">
+   <label>كلمة المرور</label>
+   <input id="adminPass" type="password" placeholder="اكتب كلمة المرور">
+  </div>
+  <button class="primary" onclick="checkAdmin()">دخول</button>
+  <p style="color:#888;font-size:12px"></p>
+ </div>
+</div>
+
+<section class="admin-panel" id="adminPanel">
+ <div class="section-title">
+  <h2>لوحة تحكم OMAR STORE</h2>
+  <p>إدارة المنتجات والطلبات</p>
+ </div>
+ <div class="admin-actions">
+  <button onclick="showProductForm()">+ إضافة منتج</button>
+  <button onclick="showOrders()">عرض الطلبات</button>
+  <button onclick="changePassword()">تغيير كلمة المرور</button>
+  <button onclick="logoutAdmin()">خروج</button>
+ </div>
+ <div id="adminForm"></div>
+ <div id="adminList" class="admin-list"></div>
+ <div id="ordersList"></div>
+</section>
+
+<script>
+/* صور المنتجات: كل منتج له صورة مستقلة */
+const defaultProducts=[
+ {
+  id:1,name:"Red Pulse",ar:"ريد بالس",
+  cat:"Running",price:1250,
+  color:"#d94a43",bg:"#f5d5d2",
+  desc:"كوتشي رياضي أحمر بتصميم سريع وعصري.",
+  img:"https://www.pngnow.com/promo/sneaker.png"
+ },
+ {
+  id:2,name:"Blue Low",ar:"بلو لو",
+  cat:"Street",price:1100,
+  color:"#3976bb",bg:"#dce9f7",
+  desc:"كوتشي أزرق كاجوال بتصميم كلاسيكي.",
+  img:"https://img.apim.abc-mart.biz/img/6376/6376940001/637694000106.jpg"
+ },
+ {
+  id:3,name:"Volt One",ar:"فولت وان",
+  cat:"Sport",price:1450,
+  color:"#c4d93c",bg:"#edf2cb",
+  desc:"حذاء رياضي ليموني بلون واضح ومميز.",
+  img:"https://down-id.img.susercontent.com/file/id-11134207-7rasb-m20t0cxlb3m180"
+ },
+ {
+  id:4,name:"Midnight Run",ar:"ميدنايت ران",
+  cat:"Running",price:1550,
+  color:"#292d39",bg:"#d8dbe2",
+  desc:"كوتشي أسود للجري والحركة اليومية.",
+  img:"https://cdn.shopify.com/s/files/1/0603/3031/1875/files/1_dca352ce-0c03-42d4-bd05-61c4fd6d503a.jpg?v=1723620173"
+ },
+ {
+  id:5,name:"Sand Dune",ar:"ساند ديون",
+  cat:"Classic",price:1200,
+  color:"#c6a77b",bg:"#eee2d0",
+  desc:"كوتشي بيج هادئ بتفاصيل بنية.",
+  img:"https://maplestore.com.au/cdn/shop/files/REPRODUCTION_OF_FOUND_GERMAN_ARMY_TRAINER_PANNA.jpg?v=1758265013&width=2048"
+ },
+ {
+  id:6,name:"Forest Trail",ar:"فورست تريل",
+  cat:"Sport",price:1600,
+  color:"#54765b",bg:"#dce9dc",
+  desc:"كوتشي تريل أخضر زيتوني بطابع رياضي.",
+  img:"https://static.ftshp.digital/img/p/1/3/3/0/0/4/5/1330045.jpg"
+ },
+ {
+  id:7,name:"Sunset Max",ar:"سانسيت ماكس",
+  cat:"Running",price:1350,
+  color:"#e66d35",bg:"#f7dfd0",
+  desc:"كوتشي جري برتقالي بتصميم خفيف.",
+  img:"https://imgmarketplace.lojasrenner.com.br/20001/3889/7010705520593/7510711809058/1.jpeg"
+ },
+ {
+  id:8,name:"Ghost White",ar:"جوست وايت",
+  cat:"Classic",price:1150,
+  color:"#e5e5e5",bg:"#f0f0f0",
+  desc:"كوتشي أبيض بسيط وأنيق.",
+  img:"https://cdn.shopify.com/s/files/1/1002/1104/products/Oliver_Cabell-Low_Top-White-Profile_Final_47656503-45ac-4081-985f-20bc5c7e4846.jpg?v=1658456557"
+ },
+ {
+  id:9,name:"Jet Black",ar:"جيت بلاك",
+  cat:"Street",price:1300,
+  color:"#252525",bg:"#dedede",
+  desc:"كوتشي أسود جلد يناسب الستايل اليومي.",
+  img:"https://brunovillanueva.com/cdn/shop/files/C89FC7D7-E830-4483-ADC7-B9F78F2CEF66.png?v=1777813586&width=1445"
+ },
+ {
+  id:10,name:"Pink Rush",ar:"بينك راش",
+  cat:"Street",price:1250,
+  color:"#d989a7",bg:"#f5dfe8",
+  desc:"كوتشي وردي بتصميم كاجوال.",
+  img:"https://www.bata.com/dw/image/v2/BCLG_PRD/on/demandware.static/-/Sites-bata-in-master-catalog/default/dw16429818/images/large/5515501_2.jpeg?sw=817"
+ },
+ {
+  id:11,name:"Court King",ar:"كورت كينج",
+  cat:"Sport",price:1500,
+  color:"#536b9c",bg:"#dce3f1",
+  desc:"حذاء رياضي أزرق داكن بتصميم قوي.",
+  img:"https://static.ftshp.digital/img/p/1/5/1/4/8/4/5/1514845.jpg"
+ },
+ {
+  id:12,name:"Aqua Flow",ar:"أكوا فلو",
+  cat:"Running",price:1400,
+  color:"#56aab5",bg:"#d9eff0",
+  desc:"كوتشي جري تركواز بلون مائي منعش.",
+  img:"https://fluxfootwear.com/cdn/shop/files/FLUX_RN_LATERAL_color_green-tourmaline-rn_800x.jpg?v=1746628650"
+ },
+ {
+  id:13,name:"Crimson Hi",ar:"كريمسون هاي",
+  cat:"Street",price:1650,
+  color:"#a52c36",bg:"#f0d9dc",
+  desc:"كوتشي برقبة عالية باللون العنابي.",
+  img:"https://pfflyers.com/cdn/shop/files/C25HC1CA_045.jpg?v=1755824935&width=1946"
+ },
+ {
+  id:14,name:"Lime Sprint",ar:"لايم سبرينت",
+  cat:"Running",price:1450,
+  color:"#a9c83d",bg:"#eaf0d0",
+  desc:"كوتشي رياضي أخضر ليموني للجري.",
+  img:"https://www.holabirdsports.com/cdn/shop/files/042792_3.jpg?v=1743181628&width=2048"
+ }
+];
+
+const $=id=>document.getElementById(id);
+
+function load(key,fallback){
+ try{
+  let v=JSON.parse(localStorage.getItem(key));
+  return v??fallback;
+ }catch(e){
+  return fallback;
+ }
+}
+
+/* مفتاح جديد للمنتجات حتى لا تظهر الصور القديمة المحفوظة */
+let products=load("omar-products-v2",null);
+
+if(!Array.isArray(products)||!products.length){
+ products=defaultProducts.map(p=>({...p}));
+}
+
+let cart=load("omar-cart",[]);
+let orders=load("omar-orders",[]);
+let adminPassword=load("omar-pass","omar1234");
+
+let selectedProduct=null;
+let filter="all";
+let heroIndex=0;
+let english=false;
+let editingId=null;
+
+function save(){
+ localStorage.setItem("omar-products-v2",JSON.stringify(products));
+ localStorage.setItem("omar-cart",JSON.stringify(cart));
+ localStorage.setItem("omar-orders",JSON.stringify(orders));
+ localStorage.setItem("omar-pass",JSON.stringify(adminPassword));
+}
+
+/* تغيير ألوان خلفية الموقع بالكامل */
+function applyTheme(p){
+ if(!p)return;
+
+ document.body.style.setProperty("--bg",p.bg||"#f4f6fa");
+ document.body.style.setProperty("--glow",p.color||"#ddd");
+ document.body.style.setProperty("--accent",p.color||"#d99a36");
+
+ $("hero").style.setProperty("--hero-bg",p.bg||"#eee");
+ $("hero").style.setProperty("--glow",p.color||"#ddd");
+}
+
+function imageError(img){
+ img.style.display="none";
+
+ let fallback=document.createElement("div");
+ fallback.className="image-fallback";
+ fallback.textContent="تعذر تحميل الصورة";
+ img.parentElement.appendChild(fallback);
+}
+
+function renderProducts(){
+ let list=filter==="all"
+  ?products
+  :products.filter(p=>p.cat===filter);
+
+ $("products").innerHTML=list.map(p=>`
+ <article class="product">
+  <span class="tag">${p.cat}</span>
+
+  <div class="product-photo" style="background:linear-gradient(145deg,${p.bg||"#eee"},#fff)">
+   <img
+    src="${p.img||""}"
+    alt="${p.name}"
+    loading="lazy"
+    onerror="imageError(this)">
+  </div>
+
+  <div class="product-info">
+   <h3>${p.ar||p.name}</h3>
+   <p>${p.desc||"كوتشي مميز من OMAR STORE"}</p>
+   <div class="price">${Number(p.price).toLocaleString("en-US")} جنيه</div>
+
+   <div class="product-actions">
+    <button onclick="openProduct(${p.id})">اختار المقاس</button>
+    <button onclick="quickAdd(${p.id})">🛒</button>
+   </div>
+  </div>
+ </article>
+ `).join("")||'<div class="empty">مفيش منتجات في القسم ده</div>';
+}
+
+function setFilter(value,button){
+ filter=value;
+ document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ renderProducts();
+}
+
+function showHero(index){
+ if(!products.length)return;
+
+ heroIndex=(index+products.length)%products.length;
+ let p=products[heroIndex];
+
+ $("heroImg").style.display="block";
+ $("heroImg").src=p.img||"";
+ $("heroImg").alt=p.name;
+ $("heroImg").onerror=()=>imageError($("heroImg"));
+
+ applyTheme(p);
+
+ $("dots").innerHTML=products.slice(0,8).map((x,i)=>
+  `<button class="dot ${i===heroIndex%8?"active":""}" onclick="showHero(${i})"></button>`
+ ).join("");
+}
+
+function startSlider(){
+ setInterval(()=>{
+  showHero(heroIndex+1);
+ },5500);
+}
+
+function goShop(){
+ $("shop").scrollIntoView({behavior:"smooth"});
+}
+
+function openProduct(id){
+ selectedProduct=products.find(p=>p.id===id);
+ if(!selectedProduct)return;
+
+ applyTheme(selectedProduct);
+
+ $("modalName").textContent=selectedProduct.ar||selectedProduct.name;
+
+ $("modalDetails").innerHTML=`
+ <img
+  src="${selectedProduct.img}"
+  onerror="imageError(this)"
+  style="width:100%;height:180px;object-fit:contain;background:${selectedProduct.bg};border-radius:12px">
+ <p>${selectedProduct.desc||""}</p>
+ <b>${selectedProduct.price} جنيه</b>
+ `;
+
+ $("shoeSize").value="";
+ $("productModal").classList.add("show");
+}
+
+function closeProduct(){
+ $("productModal").classList.remove("show");
+}
+
+function confirmAdd(){
+ let size=$("shoeSize").value;
+
+ if(!size){
+  alert("اختار مقاس الكوتشي الأول");
+  return;
+ }
+
+ if(!selectedProduct)return;
+
+ addToCart(selectedProduct.id,size);
+ closeProduct();
+ openCart();
+}
+
+function quickAdd(id){
+ openProduct(id);
+}
+
+function addToCart(id,size){
+ let p=products.find(x=>x.id===id);
+ if(!p)return;
+
+ let old=cart.find(x=>x.id===id&&x.size===size);
+
+ if(old)old.qty++;
+ else cart.push({id:p.id,size,qty:1});
+
+ save();
+ updateCartCount();
+ renderCart();
+}
+
+function updateCartCount(){
+ $("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0);
+}
+
+function renderCart(){
+ let total=0;
+
+ if(!cart.length){
+  $("cartItems").innerHTML='<div class="empty">السلة فاضية لسه 👟</div>';
+ }else{
+  $("cartItems").innerHTML=cart.map((item,i)=>{
+   let p=products.find(x=>x.id===item.id);
+   if(!p)return "";
+
+   total+=Number(p.price)*item.qty;
+
+   return `
+   <div class="cart-item">
+    <img src="${p.img}" onerror="imageError(this)">
+    <div class="cart-item-info">
+     <b>${p.ar||p.name}</b>
+     <small>المقاس: ${item.size} — ${p.price} جنيه</small>
+
+     <div class="qty">
+      <button onclick="changeQty(${i},1)">+</button>
+      <span>${item.qty}</span>
+      <button onclick="changeQty(${i},-1)">−</button>
+      <button class="remove" onclick="removeCart(${i})">حذف</button>
+     </div>
+    </div>
+   </div>`;
+  }).join("");
+ }
+
+ $("cartTotal").textContent="الإجمالي: "+total.toLocaleString("en-US")+" جنيه";
+}
+
+function changeQty(i,n){
+ if(!cart[i])return;
+
+ cart[i].qty+=n;
+
+ if(cart[i].qty<=0)cart.splice(i,1);
+
+ save();
+ updateCartCount();
+ renderCart();
+}
+
+function removeCart(i){
+ cart.splice(i,1);
+ save();
+ updateCartCount();
+ renderCart();
+}
+
+function openCart(){
+ renderCart();
+ $("drawer").classList.add("show");
+ $("overlay").classList.add("show");
+}
+
+function closeCart(){
+ $("drawer").classList.remove("show");
+ $("overlay").classList.remove("show");
+}
+
+function checkout(){
+ if(!cart.length){
+  alert("السلة فاضية");
+  return;
+ }
+
+ let name=prompt("اكتب اسمك لتسجيل الطلب:");
+ if(!name||!name.trim())return;
+
+ let phone=prompt("اكتب رقم تليفون للتواصل:");
+ if(!phone||!phone.trim())return;
+
+ let total=cart.reduce((s,x)=>{
+  let p=products.find(p=>p.id===x.id);
+  return s+(p?Number(p.price)*x.qty:0);
+ },0);
+
+ orders.push({
+  id:Date.now(),
+  name:name.trim(),
+  phone:phone.trim(),
+  items:cart.map(x=>({...x})),
+  total,
+  date:new Date().toLocaleString("ar-EG")
+ });
+
+ cart=[];
+ save();
+ updateCartCount();
+ renderCart();
+ closeCart();
+
+ alert("تم تسجيل الطلب في لوحة التحكم. دي نسخة تجريبية محلية.");
+}
+
+function toggleLanguage(){
+ english=!english;
+ $("langBtn").textContent=english?"AR":"EN";
+ document.documentElement.lang=english?"en":"ar";
+ document.documentElement.dir=english?"ltr":"rtl";
+}
+
+function hideModal(id){
+ $(id).classList.remove("show");
+}
+
+function loginAdmin(){
+ $("adminPass").value="";
+ $("loginModal").classList.add("show");
+}
+
+function checkAdmin(){
+ if($("adminPass").value===adminPassword){
+  hideModal("loginModal");
+  $("adminPanel").classList.add("show");
+  renderAdmin();
+  $("adminPanel").scrollIntoView({behavior:"smooth"});
+ }else{
+  alert("كلمة المرور غير صحيحة");
+ }
+}
+
+function logoutAdmin(){
+ $("adminPanel").classList.remove("show");
+}
+
+function renderAdmin(){
+ $("adminList").innerHTML=products.map(p=>`
+ <div class="admin-row">
+  <span><b>${p.ar||p.name}</b> — ${p.price} جنيه</span>
+  <span>
+   <button onclick="editProduct(${p.id})">تعديل</button>
+   <button class="delete" onclick="deleteProduct(${p.id})">حذف</button>
+  </span>
+ </div>
+ `).join("");
+}
+
+function showProductForm(p=null){
+ editingId=p?p.id:null;
+
+ $("adminForm").innerHTML=`
+ <div class="modal-box" style="width:100%;max-width:100%;margin-bottom:20px">
+  <h3>${p?"تعديل منتج":"إضافة منتج جديد"}</h3>
+
+  <div class="admin-grid">
+   <div class="field">
+    <label>اسم المنتج بالعربي</label>
+    <input id="fAr" value="${p?.ar||""}">
+   </div>
+
+   <div class="field">
+    <label>اسم المنتج بالإنجليزي</label>
+    <input id="fName" value="${p?.name||""}">
+   </div>
+
+   <div class="field">
+    <label>القسم</label>
+    <select id="fCat">
+     ${["Running","Street","Sport","Classic"].map(c=>
+      `<option ${p?.cat===c?"selected":""}>${c}</option>`
+     ).join("")}
+    </select>
+   </div>
+
+   <div class="field">
+    <label>السعر</label>
+    <input id="fPrice" type="number" value="${p?.price||""}">
+   </div>
+
+   <div class="field">
+    <label>لون الخلفية (HEX)</label>
+    <input id="fBg" value="${p?.bg||"#e9edf4"}">
+   </div>
+
+   <div class="field">
+    <label>اللون الأساسي (HEX)</label>
+    <input id="fColor" value="${p?.color||"#c47c20"}">
+   </div>
+  </div>
+
+  <div class="field">
+   <label>وصف المنتج</label>
+   <input id="fDesc" value="${p?.desc||""}">
+  </div>
+
+  <div class="field">
+   <label>رابط الصورة</label>
+   <input id="fImg" value="${p?.img||""}" placeholder="https://...">
+  </div>
+
+  <div class="field">
+   <label>أو اختار صورة من جهازك</label>
+   <input id="fFile" type="file" accept="image/*">
+  </div>
+
+  <button class="primary" onclick="saveProduct()">حفظ المنتج</button>
+  <button class="close" onclick="$('adminForm').innerHTML=''">إلغاء</button>
+ </div>`;
+}
+
+function editProduct(id){
+ let p=products.find(x=>x.id===id);
+ if(p)showProductForm(p);
+}
+
+function saveProduct(){
+ let ar=$("fAr").value.trim();
+ let name=$("fName").value.trim();
+ let price=Number($("fPrice").value);
+
+ if(!ar||!name||!price||price<0){
+  alert("اكمل الاسم والسعر بشكل صحيح");
+  return;
+ }
+
+ let old=products.find(p=>p.id===editingId);
+ let img=$("fImg").value.trim()||old?.img||"";
+ let file=$("fFile").files[0];
+
+ const finish=(image)=>{
+  let data={
+   id:editingId||Date.now(),
+   ar,
+   name,
+   cat:$("fCat").value,
+   price,
+   bg:$("fBg").value||"#eee",
+   color:$("fColor").value||"#ccc",
+   desc:$("fDesc").value,
+   img:image
+  };
+
+  if(editingId){
+   products=products.map(p=>p.id===editingId?data:p);
+  }else{
+   products.push(data);
+  }
+
+  save();
+  renderProducts();
+  renderAdmin();
+  showHero(0);
+  $("adminForm").innerHTML="";
+  alert("تم حفظ المنتج");
+ };
+
+ if(file){
+  let reader=new FileReader();
+  reader.onload=e=>finish(e.target.result);
+  reader.readAsDataURL(file);
+ }else{
+  finish(img);
+ }
+}
+
+function deleteProduct(id){
+ if(!confirm("متأكد إنك عايز تحذف المنتج؟"))return;
+
+ products=products.filter(p=>p.id!==id);
+ cart=cart.filter(x=>x.id!==id);
+
+ save();
+ renderProducts();
+ renderAdmin();
+ updateCartCount();
+ renderCart();
+ showHero(0);
+}
+
+function showOrders(){
+ $("ordersList").innerHTML="<h3>الطلبات المسجلة</h3>"+(
+  orders.length
+  ?orders.map(o=>`
+   <div class="admin-row" style="display:block">
+    <b>طلب رقم: ${o.id}</b>
+    <p>الاسم: ${o.name} — التليفون: ${o.phone}</p>
+    <p>التاريخ: ${o.date}</p>
+    <p>الإجمالي: ${o.total} جنيه</p>
+    <p>${o.items.map(x=>{
+     let p=products.find(z=>z.id===x.id);
+     return `${p?.ar||p?.name||"منتج"} (مقاس ${x.size}) × ${x.qty}`;
+    }).join("، ")}</p>
+   </div>
+  `).join("")
+  :'<p>لا توجد طلبات حتى الآن.</p>'
+ );
+}
+
+function changePassword(){
+ let old=prompt("اكتب كلمة المرور الحالية:");
+
+ if(old!==adminPassword){
+  alert("كلمة المرور الحالية غير صحيحة");
+  return;
+ }
+
+ let next=prompt("اكتب كلمة المرور الجديدة:");
+
+ if(next&&next.trim().length>=4){
+  adminPassword=next.trim();
+  save();
+  alert("تم تغيير كلمة المرور");
+ }else{
+  alert("كلمة المرور لازم تكون 4 أحرف على الأقل");
+ }
+}
+
+function resetAll(){
+ if(!confirm("إرجاع المنتجات الافتراضية؟"))return;
+
+ products=defaultProducts.map(p=>({...p}));
+ save();
+ renderProducts();
+ renderAdmin();
+ showHero(0);
+}
+
+/* تشغيل الموقع */
+renderProducts();
+updateCartCount();
+renderCart();
+showHero(0);
+startSlider();
+</script>
+
+</body>
+</html>
